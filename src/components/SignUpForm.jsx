@@ -28,7 +28,10 @@ export default function SignUpForm({ setToken }) {
     } catch (e) {
       setError(e.message);
       console.log(error);
+      setError(null);
     }
+    setUsername("");
+    setPassword("");
   }
 
   return (
@@ -41,6 +44,7 @@ export default function SignUpForm({ setToken }) {
           <input
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
           />
         </label>
         <label>
@@ -49,9 +53,10 @@ export default function SignUpForm({ setToken }) {
             value={password}
             type="password"
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </label>
-        <input type="submit" value={"submit"} />
+        <input className="submit" type="submit" value={"Submit"} />
       </form>
     </>
   );
