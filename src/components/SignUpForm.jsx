@@ -7,29 +7,33 @@ export default function SignUpForm({ setToken }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    try {
-      const response = await fetch(
-        "https://fsa-jwt-practice.herokuapp.com/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: username,
-            password: password,
-          }),
-        }
-      );
-      const data = await response.json();
-      setToken(data.token);
-      console.log(data);
-    } catch (e) {
-      setError(e.message);
-      console.log(error);
-      setError(null);
+    if (username.length > 7) {
+      try {
+        const response = await fetch(
+          "https://fsa-jwt-practice.herokuapp.com/signup",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              username: username,
+              password: password,
+            }),
+          }
+        );
+        const data = await response.json();
+        setToken(data.token);
+        console.log(data);
+      } catch (e) {
+        setError(e.message);
+        console.log(error);
+        setError(null);
+      }
+    } else {
+      setError("username must be eight characters in length.");
     }
+
     setUsername("");
     setPassword("");
   }
@@ -37,7 +41,7 @@ export default function SignUpForm({ setToken }) {
   return (
     <>
       <h2>Sign up</h2>
-      {error && <p>{error}</p>}
+      {error && <p className="error">{error}</p>}
       <form method="POST" onSubmit={handleSubmit}>
         <label>
           Username:

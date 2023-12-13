@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function Authenticate({ token }) {
   const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState();
   const [username, setUsername] = useState("");
   async function handleClick() {
     try {
@@ -29,13 +29,14 @@ export default function Authenticate({ token }) {
   return (
     <>
       <h2>Authenticate</h2>
-      {error && <p>{error}</p>}
+
       {successMessage && (
         <p>
           <span>{username} </span>
           {successMessage}
         </p>
       )}
+      {error && <p>{error}</p>}
       <button onClick={handleClick}>Authenticate Token</button>
     </>
   );
