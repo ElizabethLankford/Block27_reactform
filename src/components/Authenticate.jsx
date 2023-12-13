@@ -4,9 +4,10 @@ export default function Authenticate({ token }) {
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState();
   const [username, setUsername] = useState("");
+
   async function handleClick() {
     try {
-      console.log(token);
+      //fetched data with auth token
       const response = await fetch(
         "https://fsa-jwt-practice.herokuapp.com/authenticate",
         {
@@ -18,8 +19,8 @@ export default function Authenticate({ token }) {
         }
       );
       const result = await response.json();
+      // set success message and username to display later
 
-      console.log(result);
       setSuccessMessage(result.message);
       setUsername(result.data.username);
     } catch (e) {

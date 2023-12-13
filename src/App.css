@@ -18,11 +18,11 @@ label > input{
   padding: 3px;
 }
 .submit{
- width: 50%;
- align-self: center;
- font-family: inherit;
-font-weight: bold;
-cursor: pointer;
+  width: 50%;
+  align-self: center;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
 }
 .error{
   color: red;

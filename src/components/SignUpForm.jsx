@@ -7,6 +7,9 @@ export default function SignUpForm({ setToken }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    //clear error message
+    setError(null);
+    // Set condition for username to be 8 characters minimum
     if (username.length > 7) {
       try {
         const response = await fetch(
@@ -30,10 +33,11 @@ export default function SignUpForm({ setToken }) {
         console.log(error);
         setError(null);
       }
-    } else {
+    } else if (username.length < 8) {
+      //set error message
       setError("username must be eight characters in length.");
     }
-
+    // Clear input values
     setUsername("");
     setPassword("");
   }
